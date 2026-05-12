@@ -38,7 +38,7 @@ echo "<h1>Registration Page </h1> <br>";
                 </tr>
                 <tr>
                     <td> </td>
-                    <td> <input type ="submit" id="submitbutton" name = "submit"> </td>
+                    <td> <input type ="submit" id="submitbutton" name = "submit" value="Register"> </td>
                 </tr>
                 <tr>
                     <td colspan="2"> <span class="message"><?php echo $message; ?></span> </td>

@@ -9,7 +9,7 @@ include "../Controller/loginvalidation.php";
     <body>
         <form method ='post' action ="Login.php">
             <?php
-            echo "<h1 style='color: red'>LogIn Page</h1>";
+            echo "<h1>LogIn Page</h1>";
             if(isset($_SESSION["success"]))
                 {
                     echo "<span class='message'>".$_SESSION["success"]."</span><br><br>";
@@ -28,7 +28,7 @@ include "../Controller/loginvalidation.php";
                 <tr>
                     <td> </td>
                     <td>
-                        <input type ="submit"/>
+                        <input type ="submit" value="Login"/>
                     </td>
                 </tr>
                 <tr>
