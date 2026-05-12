@@ -65,6 +65,26 @@ function UpdateProfile($connection, $tablename, $id, $name, $phone, $bio)
     return $result;
 }
 
+function CheckSellerRequest($connection, $tablename, $user_id)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE user_id=? ORDER BY id DESC LIMIT 1";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$user_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function SellerRequest($connection, $tablename, $user_id, $motivation)
+{
+    $status="pending";
+    $sql= "INSERT INTO ".$tablename."(user_id, motivation, status) VALUES (?,?,?)";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("iss",$user_id, $motivation, $status);
+    $result = $statement->execute();
+    return $result;
+}
+
 
 }
 ?>
