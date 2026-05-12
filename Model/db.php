@@ -85,6 +85,56 @@ function SellerRequest($connection, $tablename, $user_id, $motivation)
     return $result;
 }
 
+function PendingSellerRequest($connection)
+{
+    $sql = "SELECT seller_requests.id AS request_id, seller_requests.user_id, seller_requests.motivation, seller_requests.status, seller_requests.created_at,
+            users.name, users.email, users.phone, users.bio, users.seller_verified
+            FROM seller_requests
+            INNER JOIN users ON seller_requests.user_id=users.id
+            WHERE seller_requests.status='pending' AND users.seller_verified=0
+            ORDER BY seller_requests.created_at ASC";
+    $result = $connection->query($sql);
+    return $result;
+}
+
+function ApproveSeller($connection, $user_id)
+{
+    $verified=1;
+    $approved="approved";
+
+    $sql1= "UPDATE users SET seller_verified=? WHERE id=?";
+    $statement1=$connection->prepare($sql1);
+    $statement1->bind_param("ii",$verified, $user_id);
+    $result1 = $statement1->execute();
+
+    $sql2= "UPDATE seller_requests SET status=? WHERE user_id=? AND status='pending'";
+    $statement2=$connection->prepare($sql2);
+    $statement2->bind_param("si",$approved, $user_id);
+    $result2 = $statement2->execute();
+
+    if($result1 && $result2)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+}
+
+function RejectSeller($connection, $user_id)
+{
+    $rejected="rejected";
+    $sql= "UPDATE seller_requests SET status=? WHERE user_id=? AND status='pending'";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("si",$rejected, $user_id);
+    $result = $statement->execute();
+    return $result;
+}
+
+
+// Task 2 functions will be added here later.
+// Task 3 functions will be added here later.
+// Task 4 functions will be added here later.
 
 }
 ?>
