@@ -5,7 +5,7 @@ echo "<h1>Become Seller Page </h1> <br>";
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="Design/Style.css">
+        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css">
     </head>
     <body>
         <?php

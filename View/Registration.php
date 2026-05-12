@@ -5,7 +5,7 @@ echo "<h1>Registration Page </h1> <br>";
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="Design/Style.css">
+        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css">
         <Script src ="../Controller/JS/CheckEmail.js"> </Script>
     </head>
     <body>
