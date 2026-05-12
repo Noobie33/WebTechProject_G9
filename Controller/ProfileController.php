@@ -1,0 +1,67 @@
+<?php
+include "../Model/db.php";
+session_start();
+
+$name="";
+$email="";
+$phone="";
+$bio="";
+$role="";
+$seller_verified="";
+$nameErr="";
+$phoneErr="";
+$message="";
+
+if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]!=true)
+    {
+        Header("Location:../View/Login.php");
+    }
+
+$database = new db();
+$connection = $database->connection();
+$userResult = $database->UserInfo($connection,"users",$_SESSION["user_id"]);
+
+if($userResult->num_rows==1)
+    {
+        while($row=$userResult->fetch_assoc())
+            {
+                $name=$row["name"];
+                $email=$row["email"];
+                $phone=$row["phone"];
+                $bio=$row["bio"];
+                $role=$row["role"];
+                $seller_verified=$row["seller_verified"];
+            }
+    }
+
+if($_SERVER["REQUEST_METHOD"]=="POST")
+    {
+        $name = $_POST["name"] ?? "";
+        $phone = $_POST["phone"] ?? "";
+        $bio = $_POST["bio"] ?? "";
+
+        if(empty($name))
+            {
+                $nameErr="Name Required";
+            }
+
+        if(empty($phone))
+            {
+                $phoneErr="Phone Required";
+            }
+
+        if(empty($nameErr) && empty($phoneErr))
+            {
+                $result = $database->UpdateProfile($connection,"users",$_SESSION["user_id"],$name,$phone,$bio);
+
+                if($result)
+                    {
+                        $_SESSION["name"]=$name;
+                        $message="Profile Updated Successfully";
+                    }
+                    else{
+                        $message="Profile Update Failed";
+                    }
+            }
+    }
+?>

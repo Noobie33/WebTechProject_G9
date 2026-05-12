@@ -46,6 +46,25 @@ function signin($connection, $tablename, $email)
     return $result;
 }
 
+function UserInfo($connection, $tablename, $id)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function UpdateProfile($connection, $tablename, $id, $name, $phone, $bio)
+{
+    $sql= "UPDATE ".$tablename." SET name=?, phone=?, bio=? WHERE id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("sssi",$name, $phone, $bio, $id);
+    $result = $statement->execute();
+    return $result;
+}
+
 
 }
 ?>
