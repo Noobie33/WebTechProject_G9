@@ -7,6 +7,10 @@ if(!$email)
     {
         echo "Email Required";
     }
+else if(!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/",$email))
+    {
+        echo "Invalid Email";
+    }
     else{
         $database = new db();
         $connection = $database->connection();

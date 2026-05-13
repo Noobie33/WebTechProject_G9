@@ -1,50 +1,41 @@
 body{
     font-family: Arial;
-    background-color:#f2f3f5;
+    background-color:#f2f2f2;
     margin:0px;
     padding:0px;
-    color:#111;
 }
 
 h1{
     color:#111;
-    font-size:25px;
+    font-size:26px;
     margin-top:0px;
     margin-bottom:18px;
-    text-align:left;
 }
 
 form{
     background-color:white;
     width:520px;
-    max-width:90%;
     padding:25px;
-    border:1px solid #d5d5d5;
-    border-radius:7px;
-    margin:45px auto 15px auto;
+    border:1px solid #cccccc;
+    border-radius:6px;
+    margin:45px auto;
 }
 
 table{
-    border-collapse: collapse;
     width:100%;
+    border-collapse: collapse;
 }
 
 td{
-    padding:7px 0px;
+    padding:8px;
     vertical-align:top;
 }
 
-td:first-child{
-    width:135px;
-    font-weight:bold;
-}
-
 input[type=text], input[type=password], textarea{
-    width:100%;
+    width:280px;
     padding:8px;
-    border:1px solid #b9b9b9;
+    border:1px solid #aaaaaa;
     border-radius:4px;
-    font-size:14px;
 }
 
 textarea{
@@ -52,30 +43,16 @@ textarea{
 }
 
 input[type=submit], button{
-    padding:8px 17px;
-    background-color:#1f1f1f;
+    padding:8px 16px;
+    background-color:#222222;
     color:white;
     border:0px;
     border-radius:4px;
     cursor:pointer;
-    font-size:14px;
-}
-
-input[type=submit]:hover, button:hover{
-    background-color:#3a3a3a;
 }
 
 a{
-    color:#ffffff;
-    text-decoration:none;
-}
-
-a:hover{
-    text-decoration:underline;
-}
-
-form a, .auth-note a{
-    color:#004aad;
+    color:blue;
 }
 
 .error{
@@ -85,42 +62,67 @@ form a, .auth-note a{
 
 .message{
     color:green;
-    font-weight:bold;
+}
+
+.required{
+    color:red;
+}
+
+#emailresponse{
+    font-size:13px;
+    margin-top:4px;
 }
 
 .auth-note{
     margin-top:15px;
     padding-top:12px;
-    border-top:1px solid #e0e0e0;
-    font-size:14px;
-    line-height:20px;
+    border-top:1px solid #dddddd;
 }
 
 .nav{
-    width:100%;
-    background-color:#1f1f1f;
-    padding:14px 30px;
-    box-sizing:border-box;
-    margin:0px 0px 25px 0px;
+    background-color:#222222;
+    padding:13px 25px;
+    margin-bottom:25px;
 }
 
 .nav a{
     color:white;
-    margin-right:20px;
+    margin-right:25px;
     font-weight:bold;
 }
 
 .box{
     background-color:white;
-    width:900px;
-    max-width:90%;
+    width:950px;
     padding:22px;
-    border:1px solid #d0d0d0;
+    border:1px solid #cccccc;
     border-radius:6px;
-    margin:20px auto;
+    margin:25px auto;
+}
+
+.data-table{
+    width:100%;
+    border-collapse: collapse;
 }
 
 .data-table td{
-    padding:9px;
     border:1px solid #cccccc;
+    padding:10px;
+    vertical-align:top;
+}
+
+.data-table tr:first-child td{
+    font-weight:bold;
+    background-color:#eeeeee;
+}
+
+.approve-btn{
+    width:82px;
+    background-color:green;
+    margin-bottom:7px;
+}
+
+.reject-btn{
+    width:82px;
+    background-color:red;
 }

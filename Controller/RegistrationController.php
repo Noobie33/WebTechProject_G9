@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         $name = $_POST["name"] ?? "";
         $email = $_POST["email"] ?? "";
-        $phone = $_POST["phone"] ?? "";
+        $phone = trim($_POST["phone"] ?? "");
         $bio = $_POST["bio"] ?? "";
         $password= $_POST["password"] ?? "";
         $confirm_password= $_POST["confirm_password"] ?? "";
@@ -43,15 +43,19 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             {
                 $emailErr="Email Required";
             }
-        else if(!filter_var($email,FILTER_VALIDATE_EMAIL))
+        else if(!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/",$email))
             {
                 $emailErr="Invalid Email";
             }
 
         if(empty($phone))
-            {
-                $phoneErr="Phone Required";
-            }
+    {
+        $phoneErr="Phone Required";
+    }
+else if(!preg_match("/^[0-9]+$/",$phone))
+    {
+        $phoneErr="Phone must contain only numbers";
+    }
 
         if(empty($password))
             {
