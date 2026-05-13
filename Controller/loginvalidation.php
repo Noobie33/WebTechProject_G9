@@ -10,13 +10,7 @@ $message="";
 
 if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]==true)
     {
-        if($_SESSION["role"]=="admin")
-            {
-                Header("Location:../View/AdminSellerRequests.php");
-            }
-            else{
-                Header("Location:../View/Dashboard.php");
-            }
+        Header("Location:../View/Dashboard.php");
     }
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
@@ -58,13 +52,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                                         $_SESSION["seller_verified"]=$row["seller_verified"];
                                         $_SESSION["loggedIn"]=true;
 
-                                        if($row["role"]=="admin")
-                                            {
-                                                Header("Location:../View/AdminSellerRequests.php");
-                                            }
-                                            else{
-                                                Header("Location:../View/Dashboard.php");
-                                            }
+                                        Header("Location:../View/Dashboard.php");
                                     }
                                     else{
                                         $message="Invalid Email or Password";

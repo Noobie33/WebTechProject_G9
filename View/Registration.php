@@ -1,15 +1,15 @@
 <?php
 include "../Controller/RegistrationController.php";
-echo "<h1>Registration Page </h1> <br>";
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css">
+        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css?v=10">
         <Script src ="../Controller/JS/CheckEmail.js"> </Script>
     </head>
     <body>
         <form method = "post" action="Registration.php">
+            <h1>Registration</h1>
             <table>
                 <tr>
                     <td> <label for ="name">Name: </label></td>
@@ -26,7 +26,7 @@ echo "<h1>Registration Page </h1> <br>";
                 </tr>
                 <tr>
                     <td> <label for ="bio">Bio: </label></td>
-                    <td> <textarea name="bio"><?php echo $bio ?></textarea> </td>
+                    <td> <textarea name="bio" placeholder="Write a short bio"><?php echo $bio ?></textarea> </td>
                 </tr>
                 <tr>
                     <td> <label for ="password">Password:  </label></td>
@@ -44,8 +44,9 @@ echo "<h1>Registration Page </h1> <br>";
                     <td colspan="2"> <span class="message"><?php echo $message; ?></span> </td>
                 </tr>
             </table>
+            <div class="auth-note">
+                Already Have an Account? <a href="Login.php">Login</a>
+            </div>
         </form>
-        <br>
-        Already Registered? <a href="Login.php">Login</a>
     </body>
 </html>

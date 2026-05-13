@@ -1,44 +1,48 @@
 body{
     font-family: Arial;
-    background-color:#f3f4f6;
+    background-color:#f2f3f5;
     margin:0px;
     padding:0px;
-    color:#222;
+    color:#111;
 }
 
 h1{
-    text-align:center;
-    color:#222;
-    font-size:28px;
-    margin-top:35px;
-    margin-bottom:10px;
+    color:#111;
+    font-size:25px;
+    margin-top:0px;
+    margin-bottom:18px;
+    text-align:left;
 }
 
 form{
     background-color:white;
-    width:620px;
+    width:520px;
     max-width:90%;
-    padding:22px;
-    border:1px solid #d0d0d0;
-    border-radius:6px;
-    margin:20px auto;
+    padding:25px;
+    border:1px solid #d5d5d5;
+    border-radius:7px;
+    margin:45px auto 15px auto;
 }
 
 table{
     border-collapse: collapse;
-    background-color:white;
     width:100%;
 }
 
 td{
-    padding:9px;
+    padding:7px 0px;
     vertical-align:top;
 }
 
+td:first-child{
+    width:135px;
+    font-weight:bold;
+}
+
 input[type=text], input[type=password], textarea{
-    width:270px;
+    width:100%;
     padding:8px;
-    border:1px solid #aaa;
+    border:1px solid #b9b9b9;
     border-radius:4px;
     font-size:14px;
 }
@@ -48,8 +52,8 @@ textarea{
 }
 
 input[type=submit], button{
-    padding:8px 18px;
-    background-color:#222;
+    padding:8px 17px;
+    background-color:#1f1f1f;
     color:white;
     border:0px;
     border-radius:4px;
@@ -58,11 +62,11 @@ input[type=submit], button{
 }
 
 input[type=submit]:hover, button:hover{
-    background-color:#444;
+    background-color:#3a3a3a;
 }
 
 a{
-    color:#004aad;
+    color:#ffffff;
     text-decoration:none;
 }
 
@@ -70,9 +74,13 @@ a:hover{
     text-decoration:underline;
 }
 
+form a, .auth-note a{
+    color:#004aad;
+}
+
 .error{
     color:red;
-    font-size:14px;
+    font-size:13px;
 }
 
 .message{
@@ -80,25 +88,39 @@ a:hover{
     font-weight:bold;
 }
 
+.auth-note{
+    margin-top:15px;
+    padding-top:12px;
+    border-top:1px solid #e0e0e0;
+    font-size:14px;
+    line-height:20px;
+}
+
 .nav{
-    width:90%;
-    margin:20px auto;
-    background-color:white;
-    border:1px solid #d0d0d0;
-    padding:12px;
-    border-radius:6px;
+    width:100%;
+    background-color:#1f1f1f;
+    padding:14px 30px;
+    box-sizing:border-box;
+    margin:0px 0px 25px 0px;
 }
 
 .nav a{
-    margin-right:12px;
+    color:white;
+    margin-right:20px;
+    font-weight:bold;
 }
 
 .box{
     background-color:white;
-    width:700px;
+    width:900px;
     max-width:90%;
-    padding:20px;
+    padding:22px;
     border:1px solid #d0d0d0;
     border-radius:6px;
     margin:20px auto;
+}
+
+.data-table td{
+    padding:9px;
+    border:1px solid #cccccc;
 }

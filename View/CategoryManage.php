@@ -5,18 +5,30 @@ if(!$isloggedIn)
     {
         Header("Location:Login.php"); 
     }
+if($_SESSION["role"]!="admin")
+    {
+        Header("Location:Dashboard.php");
+    }
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css">
+        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css?v=10">
     </head>
     <body>
-        <?php
-            echo "<h1>Category Manage Page</h1>";
-            echo "This page will be completed in another task.";
-        ?>
-        <br><br>
-        <a href="Dashboard.php">Back To Dashboard</a>
+        <div class="nav">
+            <a href="Dashboard.php">Dashboard</a>
+            <a href="AdminSellerRequests.php">Seller Requests</a>
+            <a href="CategoryManage.php">Category Manage</a>
+            <a href="AdminDashboard.php">Analytics</a>
+            <a href="../Controller/Logout.php">Logout</a>
+        </div>
+
+        <div class="box">
+            <?php
+                echo "<h1>Category Management</h1>";
+                echo "This page will be completed in Task 2.";
+            ?>
+        </div>
     </body>
 </html>

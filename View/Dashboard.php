@@ -9,55 +9,66 @@ if(!$isloggedIn)
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css">
+        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css?v=10">
     </head>
     <body>
         <?php
-            echo "<h1>Dashboard</h1>";
-            echo "Welcome ".$_SESSION["name"]."<br>";
-            echo "Role: ".$_SESSION["role"]."<br>";
-
-            if($_SESSION["role"]=="admin")
-                {
-                    echo "Admin Panel Access <br><br>";
-                    echo "<table border='1'>";
-                    echo "<tr>";
-                    echo "<td><a href='AdminSellerRequests.php'>Seller Requests</a></td>";
-                    echo "<td><a href='CategoryManage.php'>Category Manage</a></td>";
-                    echo "<td><a href='AdminDashboard.php'>Admin Dashboard</a></td>";                   
-                    echo "<td><a href='../Controller/Logout.php'>Logout</a></td>";
-                    echo "</tr>";
-                    echo "</table>";
-                }
-                else{
-                    if($_SESSION["seller_verified"]==1)
-                        {
-                            echo "Seller Status: Verified Seller <br>";
-                        }
-                        else{
-                            echo "Seller Status: Buyer / Not Verified Seller <br>";
-                        }
+        if($_SESSION["role"]=="admin")
+            {
         ?>
-        <br>
-        <table border="1">
-            <tr>
-                <td><a href="Profile.php">Profile</a></td>
-                <td><a href="BecomeSeller.php">Become Seller</a></td>
-                <td><a href="BrowseAuctions.php">Browse Auctions</a></td>
-                <td><a href="../Controller/Logout.php">Logout</a></td>
-            </tr>
-            <?php
-            if($_SESSION["seller_verified"]==1)
-                {
-                    echo "<tr>";
-                    echo "<td><a href='CreateListing.php'>Create Listing</a></td>";
-                    echo "<td><a href='SellerDashboard.php'>Seller Dashboard</a></td>";
-                    echo "</tr>";
-                }
-            ?>
-        </table>
+        <div class="nav">
+            <a href="Dashboard.php">Dashboard</a>
+            <a href="AdminSellerRequests.php">Seller Requests</a>
+            <a href="CategoryManage.php">Category Manage</a>
+            <a href="AdminDashboard.php">Analytics</a>
+            <a href="../Controller/Logout.php">Logout</a>
+        </div>
         <?php
-                }
+            }
+        else if($_SESSION["seller_verified"]==1)
+            {
         ?>
+        <div class="nav">
+            <a href="Dashboard.php">Dashboard</a>
+            <a href="Profile.php">Profile</a>
+            <a href="BrowseAuctions.php">Browse Auctions</a>
+            <a href="CreateListing.php">Create Listing</a>
+            <a href="SellerDashboard.php">Seller Dashboard</a>
+            <a href="../Controller/Logout.php">Logout</a>
+        </div>
+        <?php
+            }
+        else{
+        ?>
+        <div class="nav">
+            <a href="Dashboard.php">Dashboard</a>
+            <a href="Profile.php">Profile</a>
+            <a href="BecomeSeller.php">Become Seller</a>
+            <a href="BrowseAuctions.php">Browse Auctions</a>
+            <a href="../Controller/Logout.php">Logout</a>
+        </div>
+        <?php
+            }
+        ?>
+
+        <div class="box">
+            <?php
+                echo "<h1>Dashboard</h1>";
+                echo "Welcome ".$_SESSION["name"]."<br>";
+                echo "Role: ".$_SESSION["role"]."<br>";
+
+                if($_SESSION["role"]=="admin")
+                    {
+                        echo "You are logged in as admin. Use the top menu to manage seller requests, categories and analytics.";
+                    }
+                else if($_SESSION["seller_verified"]==1)
+                    {
+                        echo "Seller Status: Verified Seller <br>";
+                    }
+                    else{
+                        echo "Seller Status: Buyer / Not Verified Seller <br>";
+                    }
+            ?>
+        </div>
     </body>
 </html>

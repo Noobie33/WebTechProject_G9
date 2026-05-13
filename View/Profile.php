@@ -1,14 +1,53 @@
 <?php
 include "../Controller/ProfileController.php";
-echo "<h1>Profile Page </h1> <br>";
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css">
+        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css?v=10">
     </head>
     <body>
+        <?php
+        if($_SESSION["role"]=="admin")
+            {
+        ?>
+        <div class="nav">
+            <a href="Dashboard.php">Dashboard</a>
+            <a href="AdminSellerRequests.php">Seller Requests</a>
+            <a href="CategoryManage.php">Category Manage</a>
+            <a href="AdminDashboard.php">Analytics</a>
+            <a href="../Controller/Logout.php">Logout</a>
+        </div>
+        <?php
+            }
+        else if($_SESSION["seller_verified"]==1)
+            {
+        ?>
+        <div class="nav">
+            <a href="Dashboard.php">Dashboard</a>
+            <a href="Profile.php">Profile</a>
+            <a href="BrowseAuctions.php">Browse Auctions</a>
+            <a href="CreateListing.php">Create Listing</a>
+            <a href="SellerDashboard.php">Seller Dashboard</a>
+            <a href="../Controller/Logout.php">Logout</a>
+        </div>
+        <?php
+            }
+        else{
+        ?>
+        <div class="nav">
+            <a href="Dashboard.php">Dashboard</a>
+            <a href="Profile.php">Profile</a>
+            <a href="BecomeSeller.php">Become Seller</a>
+            <a href="BrowseAuctions.php">Browse Auctions</a>
+            <a href="../Controller/Logout.php">Logout</a>
+        </div>
+        <?php
+            }
+        ?>
+
         <form method = "post" action="Profile.php">
+            <h1>My Profile</h1>
             <table>
                 <tr>
                     <td>Name: </td>
@@ -24,7 +63,7 @@ echo "<h1>Profile Page </h1> <br>";
                 </tr>
                 <tr>
                     <td>Bio: </td>
-                    <td><textarea name="bio"><?php echo $bio ?></textarea></td>
+                    <td><textarea name="bio" placeholder="Write a short bio"><?php echo $bio ?></textarea></td>
                 </tr>
                 <tr>
                     <td>Role: </td>
@@ -53,7 +92,5 @@ echo "<h1>Profile Page </h1> <br>";
                 </tr>
             </table>
         </form>
-        <br>
-        <a href="Dashboard.php">Back To Dashboard</a>
     </body>
 </html>
