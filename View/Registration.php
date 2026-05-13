@@ -4,7 +4,7 @@ include "../Controller/RegistrationController.php";
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css?v=10">
+        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css">
         <Script src ="../Controller/JS/CheckEmail.js"> </Script>
     </head>
     <body>

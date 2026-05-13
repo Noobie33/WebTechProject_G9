@@ -13,7 +13,7 @@ if($_SESSION["role"]!="admin")
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css?v=10">
+        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css">
     </head>
     <body>
         <div class="nav">
