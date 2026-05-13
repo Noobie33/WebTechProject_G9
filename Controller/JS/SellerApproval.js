@@ -10,7 +10,8 @@ function ApproveSeller(user_id,rowid)
                     document.getElementById("status"+rowid).innerHTML="Approved";
                     document.getElementById("action"+rowid).innerHTML="Done";
                 }
-                else{
+                else
+                    {
                     alert(response.message);
                 }
         }
@@ -31,6 +32,7 @@ function RejectSeller(user_id,rowid)
                 {
                     document.getElementById("row"+rowid).remove();
                 }
+                
                 else{
                     alert(response.message);
                 }

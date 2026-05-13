@@ -14,7 +14,7 @@ h1{
 
 form{
     background-color:white;
-    width:520px;
+    width:500px;
     padding:25px;
     border:1px solid #cccccc;
     border-radius:6px;
@@ -32,7 +32,7 @@ td{
 }
 
 input[type=text], input[type=password], textarea{
-    width:280px;
+    width:290px;
     padding:8px;
     border:1px solid #aaaaaa;
     border-radius:4px;
@@ -58,6 +58,7 @@ a{
 .error{
     color:red;
     font-size:13px;
+    display:inline-block;   
 }
 
 .message{
