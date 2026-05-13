@@ -36,9 +36,9 @@ if($userResult->num_rows==1)
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
-        $name = trim($_POST["name"] ?? "");
-        $phone = trim($_POST["phone"] ?? "");
-        $bio = trim($_POST["bio"] ?? "");
+        $name = trim($_POST["name"]);
+        $phone = trim($_POST["phone"]);
+        $bio = trim($_POST["bio"]);
 
         if(empty($name))
             {

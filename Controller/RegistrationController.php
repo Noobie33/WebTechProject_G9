@@ -23,12 +23,13 @@ if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]==true)
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
-        $name = trim($_POST["name"] ?? "");
-         $email = trim($_POST["email"] ?? "");
-        $phone = trim($_POST["phone"] ?? "");
-    $bio = trim($_POST["bio"] ?? "");
-    $password= $_POST["password"] ?? "";
-    $confirm_password= $_POST["confirm_password"] ?? "";
+        $name = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $phone = trim($_POST["phone"]);
+    $bio = trim($_POST["bio"]);
+    $password= $_POST["password"];
+    $confirm_password= $_POST["confirm_password"];
+
         if(empty($name))
             {
                 $nameErr="Name Required";
@@ -48,13 +49,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             }
 
         if(empty($phone))
-    {
+            {
         $phoneErr="Phone Required";
-    }
-else if(!preg_match("/^[0-9]+$/",$phone))
-    {
+            }
+        else if(!preg_match("/^[0-9]+$/",$phone))
+            {
         $phoneErr="Phone must contain only numbers";
-    }
+            }
 
         if(empty($password))
             {

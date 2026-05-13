@@ -15,8 +15,8 @@ if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]==true)
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
-        $email = trim($_POST["email"] ?? "");
-        $password= $_POST["password"] ?? "";
+        $email = trim($_POST["email"]);
+        $password= $_POST["password"];
 
         if(empty($email))
             {
