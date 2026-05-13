@@ -9,7 +9,7 @@ if(!$isloggedIn)
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/WebTechProject_G9/View/Design/Style.css">
+        <link rel="stylesheet"  href="/WebTechProject_G9/View/Design/Style.css">
     </head>
     <body>
         <?php

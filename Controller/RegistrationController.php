@@ -23,13 +23,12 @@ if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]==true)
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
-        $name = $_POST["name"] ?? "";
-        $email = $_POST["email"] ?? "";
+        $name = trim($_POST["name"] ?? "");
+         $email = trim($_POST["email"] ?? "");
         $phone = trim($_POST["phone"] ?? "");
-        $bio = $_POST["bio"] ?? "";
-        $password= $_POST["password"] ?? "";
-        $confirm_password= $_POST["confirm_password"] ?? "";
-
+    $bio = trim($_POST["bio"] ?? "");
+    $password= $_POST["password"] ?? "";
+    $confirm_password= $_POST["confirm_password"] ?? "";
         if(empty($name))
             {
                 $nameErr="Name Required";
