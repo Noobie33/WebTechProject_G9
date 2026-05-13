@@ -27,7 +27,7 @@ if($_SESSION["role"]!="admin")
         <div class="box">
             <?php
                 echo "<h1>Analytics</h1>";
-                echo "This page will show auction statistics and Chart.js analytics in Task 4.";
+                echo "This page will be completed in Task 4.";
             ?>
         </div>
     </body>
