@@ -2,7 +2,7 @@
 
 include "../Model/db.php";
 
-$email=$_POST["email"]??"";
+$email=trim($_POST["email"]??"");
 if(!$email)
     {
         echo "Email Required";

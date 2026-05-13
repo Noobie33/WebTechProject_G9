@@ -28,7 +28,7 @@ if($checkRequest->num_rows==1)
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
-        $motivation = $_POST["motivation"] ?? "";
+        $motivation = trim($_POST["motivation"] ?? "");
 
         if($_SESSION["seller_verified"]==1)
             {

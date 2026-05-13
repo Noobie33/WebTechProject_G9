@@ -93,7 +93,10 @@ function PendingSellerRequest($connection)
             INNER JOIN users ON seller_requests.user_id=users.id
             WHERE seller_requests.status='pending' AND users.seller_verified=0
             ORDER BY seller_requests.created_at ASC";
-    $result = $connection->query($sql);
+
+    $statement=$connection->prepare($sql);
+    $statement->execute();
+    $result = $statement->get_result();
     return $result;
 }
 

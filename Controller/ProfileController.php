@@ -36,9 +36,9 @@ if($userResult->num_rows==1)
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
-        $name = $_POST["name"] ?? "";
-        $phone = $_POST["phone"] ?? "";
-        $bio = $_POST["bio"] ?? "";
+        $name = trim($_POST["name"] ?? "");
+        $phone = trim($_POST["phone"] ?? "");
+        $bio = trim($_POST["bio"] ?? "");
 
         if(empty($name))
             {
@@ -46,9 +46,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             }
 
         if(empty($phone))
-            {
-                $phoneErr="Phone Required";
-            }
+    {
+        $phoneErr="Phone Required";
+    }
+else if(!preg_match("/^[0-9]+$/",$phone))
+    {
+        $phoneErr="Phone must contain only numbers";
+    }
 
         if(empty($nameErr) && empty($phoneErr))
             {
