@@ -135,7 +135,57 @@ function RejectSeller($connection, $user_id)
 }
 
 
-// Task 2 functions will be added here later.
+// Task 2 functions 
+
+function AddCategory($connection, $name)
+{
+    $sql = "INSERT INTO categories(name) VALUES (?)";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("s",$name);
+    $result = $statement->execute();
+    return $result;
+}
+
+function ShowCategory($connection)
+{
+    $sql = "SELECT * FROM categories ORDER BY name ASC";
+    $result = $connection->query($sql);
+    return $result;
+}
+
+function UpdateCategory($connection, $id, $name)
+{
+    $sql = "UPDATE categories SET name=? WHERE id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("si",$name,$id);
+    $result = $statement->execute();
+    return $result;
+}
+
+function DeleteCategory($connection, $id)
+{
+    $sql = "DELETE FROM categories WHERE id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$id);
+    $result = $statement->execute();
+    return $result;
+}
+
+function CheckCategoryUsed($connection, $category_id)
+{
+    $sql = "SELECT COUNT(*) AS cnt FROM listings WHERE category_id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$category_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    $row = $result->fetch_assoc();
+    return $row['cnt'];
+}
+
+
+
+
+
 // Task 3 functions will be added here later.
 // Task 4 functions will be added here later.
 
