@@ -44,6 +44,7 @@ include "../Controller/MyBidsController.php";
                     <td>My Highest Bid</td>
                     <td>Current/Final Bid</td>
                     <td>Status</td>
+                    
                 </tr>
                 <?php
                 if($myBids && $myBids->num_rows>0)
@@ -53,8 +54,10 @@ include "../Controller/MyBidsController.php";
                                 $myBid = floatval($row['my_highest_bid']);
                                 $currentBid = floatval($row['current_bid']);
                                 $isActive = ($row['status']=='active' && strtotime($row['end_datetime']) > time());
-                        
+                                
+
                                 $badge = "";
+                                
 
                                 if($isActive)
                                     {
@@ -67,33 +70,8 @@ include "../Controller/MyBidsController.php";
                                                 $badge = "<span style='color:orange;font-weight:bold'>Outbid</span>";
                                             }
                                     }
-                                // Task 4: Winner badge Show.
-                                else if($isEnded)
-                                    {
-                                        if($row['winner_bid_id'] && $reserveMet)
-                                            {
-                                                $winnerResult = $database->GetWinnerInfo($connection, $row['winner_bid_id']);
-                                                $winnerRow = $winnerResult->fetch_assoc();
-                                                if($winnerRow && $winnerRow['buyer_id']==$_SESSION["user_id"])
-                                                    {
-                                                        $badge = "<span style='color:gold;font-weight:bold'>&#x1F3C6; You Won!</span>";
-                                                        $isWinner = true;
-                                                    }
-                                                else
-                                                    {
-                                                        $badge = "<span style='color:red'>Lost</span>";
-                                                    }
-                                            }
-                                        else if(!$reserveMet)
-                                            {
-                                                $badge = "<span style='color:#888'>Reserve Not Met</span>";
-                                            }
-                                        else
-                                            {
-                                                $badge = "<span style='color:red'>Lost</span>";
-                                            }
-                                    }
-                                */
+                                
+                                
                                 else
                                     {
                                         $badge = "<span style='color:#888'>".ucfirst($row['status'])."</span>";
@@ -103,19 +81,7 @@ include "../Controller/MyBidsController.php";
                                 echo "<td><a href='AuctionDetails.php?id=".$row['listing_id']."'>".htmlspecialchars($row['title'])."</a></td>";
                                 echo "<td>$".number_format($myBid,2)."</td>";
                                 echo "<td>$".number_format($currentBid,2)."</td>";
-                                echo "<td>".$badge."</td>";                   
-                                echo "<td>";
-                                if($isWinner && $reserveMet)
-                                    {
-                                        echo "<b>Seller:</b> ".$row['seller_name']."<br>";
-                                        echo "<b>Contact:</b> ".$row['seller_email'];
-                                    }
-                                else
-                                    {
-                                        echo "---";
-                                    }
-                                echo "</td>";
-                                */
+                                echo "<td>".$badge."</td>";
                                 echo "</tr>";
                             }
                     }
@@ -126,5 +92,5 @@ include "../Controller/MyBidsController.php";
                 ?>
             </table>
         </div>
-    </body>
+    </body> 
 </html>

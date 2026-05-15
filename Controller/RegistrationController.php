@@ -38,6 +38,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             {
                 $nameErr="Name must be at least 3 characters";
             }
+        else if(is_numeric($name))
+            {
+                $nameErr="Name can't be numeric value";
+            }
 
         if(empty($email))
             {
@@ -80,6 +84,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                 $database = new db();
                 $connection = $database->connection();
 
+                $checkPhone = $database->CheckPhone($connection,"users",$phone);
+
+                if($checkPhone->num_rows>0)
+                {
+                    $phoneErr="Phone Already Taken";
+                }
+            else{
+
                 $check = $database->CheckEmail($connection,"users",$email);
 
                 if($check->num_rows>0)
@@ -98,7 +110,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                             else{
                                 $message="Registration Failed";
                             }
-                    }
+                        }
+                }
             }
     }
 ?>
