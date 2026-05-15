@@ -256,7 +256,7 @@ function CancelListing($connection, $listing_id)
 
 
 
-// Task 3 functions will be added here later.
+// Task 3 functions
 function ShowActiveListings($connection)
 {
     $sql = "SELECT listings.*, categories.name AS category_name, COUNT(bids.id) AS bid_count, users.name AS seller_name FROM listings LEFT JOIN categories ON listings.category_id=categories.id LEFT JOIN bids ON bids.listing_id=listings.id LEFT JOIN users ON listings.seller_id=users.id WHERE listings.status='active' AND listings.end_datetime > NOW() GROUP BY listings.id ORDER BY listings.created_at DESC";
@@ -331,6 +331,15 @@ function GetBidCount($connection, $listing_id)
     $result = $statement->get_result();
     $row = $result->fetch_assoc();
     return $row['cnt'];
+}
+ function GetMyBids($connection, $buyer_id)
+{
+    $sql = "SELECT listings.id AS listing_id, listings.title, listings.current_bid, listings.status, listings.end_datetime, listings.seller_id, listings.reserve_price, listings.winner_bid_id, MAX(bids.amount) AS my_highest_bid, seller.name AS seller_name, seller.email AS seller_email FROM bids LEFT JOIN listings ON bids.listing_id=listings.id LEFT JOIN users AS seller ON listings.seller_id=seller.id WHERE bids.buyer_id=? GROUP BY listings.id ORDER BY bids.created_at DESC";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$buyer_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
 }
 
 // Task 4 functions will be added here later.
