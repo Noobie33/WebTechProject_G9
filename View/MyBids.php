@@ -15,6 +15,7 @@ include "../Controller/MyBidsController.php";
             <a href="Dashboard.php">Dashboard</a>
             <a href="Profile.php">Profile</a>
             <a href="BrowseAuctions.php">Browse Auctions</a>
+            <a href="MyBids.php">My Bids</a>
             <a href="CreateListing.php">Create Listing</a>
             <a href="SellerDashboard.php">Seller Dashboard</a>
             <a href="../Controller/Logout.php">Logout</a>
@@ -43,9 +44,6 @@ include "../Controller/MyBidsController.php";
                     <td>My Highest Bid</td>
                     <td>Current/Final Bid</td>
                     <td>Status</td>
-                    
-                    
-                    <td>Winner Info</td> 
                 </tr>
                 <?php
                 if($myBids && $myBids->num_rows>0)
@@ -55,12 +53,8 @@ include "../Controller/MyBidsController.php";
                                 $myBid = floatval($row['my_highest_bid']);
                                 $currentBid = floatval($row['current_bid']);
                                 $isActive = ($row['status']=='active' && strtotime($row['end_datetime']) > time());
-                                $isEnded = ($row['status']=='ended');
-                                //Task4: Winner Badge Show.
-                                $reserveMet = (!$row['reserve_price'] || $currentBid >= floatval($row['reserve_price']));
-
+                        
                                 $badge = "";
-                                $isWinner = false;
 
                                 if($isActive)
                                     {
@@ -73,6 +67,7 @@ include "../Controller/MyBidsController.php";
                                                 $badge = "<span style='color:orange;font-weight:bold'>Outbid</span>";
                                             }
                                     }
+                                // Task 4: Winner badge Show.
                                 else if($isEnded)
                                     {
                                         if($row['winner_bid_id'] && $reserveMet)
@@ -98,6 +93,7 @@ include "../Controller/MyBidsController.php";
                                                 $badge = "<span style='color:red'>Lost</span>";
                                             }
                                     }
+                                */
                                 else
                                     {
                                         $badge = "<span style='color:#888'>".ucfirst($row['status'])."</span>";
@@ -107,7 +103,7 @@ include "../Controller/MyBidsController.php";
                                 echo "<td><a href='AuctionDetails.php?id=".$row['listing_id']."'>".htmlspecialchars($row['title'])."</a></td>";
                                 echo "<td>$".number_format($myBid,2)."</td>";
                                 echo "<td>$".number_format($currentBid,2)."</td>";
-                                echo "<td>".$badge."</td>";
+                                echo "<td>".$badge."</td>";                   
                                 echo "<td>";
                                 if($isWinner && $reserveMet)
                                     {
@@ -119,12 +115,13 @@ include "../Controller/MyBidsController.php";
                                         echo "---";
                                     }
                                 echo "</td>";
+                                */
                                 echo "</tr>";
                             }
                     }
                 else
                     {
-                        echo "<tr><td colspan='5'>You have not placed any bids yet. <a href='BrowseAuctions.php'>Browse Auctions</a></td></tr>";
+                        echo "<tr><td colspan='4'>You have not placed any bids yet. <a href='BrowseAuctions.php'>Browse Auctions</a></td></tr>";
                     }
                 ?>
             </table>
