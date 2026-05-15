@@ -77,10 +77,10 @@ include "../Controller/ProfileController.php";
                         <?php
                         if($seller_verified==1)
                             {
-                                echo "Verified";
+                                echo "<span class='verified'>Verified</span>";
                             }
-                            else{
-                                echo "Not Verified";
+                        else{
+                                echo "<span class='unverified'>Unverified</span>";
                             }
                         ?>
                     </td>
