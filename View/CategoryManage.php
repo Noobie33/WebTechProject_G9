@@ -1,22 +1,11 @@
 <?php
 include "../Controller/CategoryController.php";
-session_start();
-$isloggedIn=$_SESSION["loggedIn"] ?? false;
-if(!$isloggedIn)
-    {
-        Header("Location:Login.php"); 
-    }
-if($_SESSION["role"]!="admin")
-    {
-        Header("Location:Dashboard.php");
-    }
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="/WebTechProject_G9/View/Design/Style.css">
         <Script src="../Controller/JS/CategoryDelete.js"></Script>
-
     </head>
     <body>
         <div class="nav">
@@ -28,13 +17,9 @@ if($_SESSION["role"]!="admin")
         </div>
 
         <div class="box">
-           <h1>Category Management</h1>
-           <?php
-                if($message!="")
-                    { 
-                        echo "<span class='message'>".$message."</span><br><br>"; 
-                    } 
-            ?>
+            <h1>Category Management</h1>
+
+            <?php if($message!=""){ echo "<span class='message'>".$message."</span><br><br>"; } ?>
 
             <h3>Add New Category</h3>
             <form method="post" action="CategoryManage.php">

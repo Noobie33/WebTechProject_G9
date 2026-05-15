@@ -149,7 +149,9 @@ function AddCategory($connection, $name)
 function ShowCategory($connection)
 {
     $sql = "SELECT * FROM categories ORDER BY name ASC";
-    $result = $connection->query($sql);
+    $statement = $connection->prepare($sql);
+    $statement->execute();
+    $result = $statement->get_result();
     return $result;
 }
 
