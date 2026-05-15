@@ -27,6 +27,7 @@ include "../Controller/ProfileController.php";
             <a href="Dashboard.php">Dashboard</a>
             <a href="Profile.php">Profile</a>
             <a href="BrowseAuctions.php">Browse Auctions</a>
+            <a href="MyBids.php">My Bids</a>
             <a href="CreateListing.php">Create Listing</a>
             <a href="SellerDashboard.php">Seller Dashboard</a>
             <a href="../Controller/Logout.php">Logout</a>
@@ -40,6 +41,7 @@ include "../Controller/ProfileController.php";
             <a href="Profile.php">Profile</a>
             <a href="BecomeSeller.php">Become Seller</a>
             <a href="BrowseAuctions.php">Browse Auctions</a>
+            <a href="MyBids.php">My Bids</a>
             <a href="../Controller/Logout.php">Logout</a>
         </div>
         <?php
@@ -75,10 +77,10 @@ include "../Controller/ProfileController.php";
                         <?php
                         if($seller_verified==1)
                             {
-                                echo "Verified";
+                                echo "<span class='verified'>Verified</span>";
                             }
-                            else{
-                                echo "Not Verified";
+                        else{
+                                echo "<span class='unverified'>Unverified</span>";
                             }
                         ?>
                     </td>

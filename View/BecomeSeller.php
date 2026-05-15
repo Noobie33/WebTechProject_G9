@@ -27,6 +27,7 @@ include "../Controller/SellerRequestController.php";
             <a href="Dashboard.php">Dashboard</a>
             <a href="Profile.php">Profile</a>
             <a href="BrowseAuctions.php">Browse Auctions</a>
+            <a href="MyBids.php">My Bids</a>
             <a href="CreateListing.php">Create Listing</a>
             <a href="SellerDashboard.php">Seller Dashboard</a>
             <a href="../Controller/Logout.php">Logout</a>
@@ -40,6 +41,7 @@ include "../Controller/SellerRequestController.php";
             <a href="Profile.php">Profile</a>
             <a href="BecomeSeller.php">Become Seller</a>
             <a href="BrowseAuctions.php">Browse Auctions</a>
+            <a href="MyBids.php">My Bids</a>
             <a href="../Controller/Logout.php">Logout</a>
         </div>
         <?php

@@ -44,18 +44,33 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             {
                 $nameErr="Name Required";
             }
+        else if(strlen($name)<3)
+            {
+                $nameErr="Name must be at least 3 characters";
+            }
+        else if(is_numeric($name))
+            {
+                $nameErr="Name can't be numeric value";
+            }
 
         if(empty($phone))
-    {
-        $phoneErr="Phone Required";
-    }
-else if(!preg_match("/^[0-9]+$/",$phone))
-    {
-        $phoneErr="Phone must contain only numbers";
-    }
+            {
+                $phoneErr="Phone Required";
+            }
+        else if(!preg_match("/^[0-9]+$/",$phone))
+            {
+                $phoneErr="Phone must contain only numbers";
+            }
 
         if(empty($nameErr) && empty($phoneErr))
             {
+                $checkPhone = $database->CheckPhoneForUpdate($connection,"users",$phone,$_SESSION["user_id"]);
+
+            if($checkPhone->num_rows>0)
+                {
+                    $phoneErr="Phone Already Taken";
+                }
+                else{
                 $result = $database->UpdateProfile($connection,"users",$_SESSION["user_id"],$name,$phone,$bio);
 
                 if($result)
@@ -66,6 +81,7 @@ else if(!preg_match("/^[0-9]+$/",$phone))
                     else{
                         $message="Profile Update Failed";
                     }
+                }
             }
     }
 ?>

@@ -127,3 +127,13 @@ a{
     width:82px;
     background-color:red;
 }
+
+.verified{
+    color:green;
+    font-weight:bold;
+}
+
+.unverified{
+    color:red;
+    font-weight:bold;
+}
