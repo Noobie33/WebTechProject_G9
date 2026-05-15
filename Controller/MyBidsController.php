@@ -13,4 +13,4 @@ $connection = $database->connection();
 $database->CloseExpiredAuctions($connection);
 
 $myBids = $database->GetMyBids($connection, $_SESSION["user_id"]);
-?>
+?> 

@@ -121,7 +121,7 @@ function ApproveSeller($connection, $user_id)
         }
         else{
             return false;
-        }
+        } 
 }
 
 function RejectSeller($connection, $user_id)

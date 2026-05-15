@@ -92,5 +92,5 @@ include "../Controller/MyBidsController.php";
                 ?>
             </table>
         </div>
-    </body>
+    </body> 
 </html>
