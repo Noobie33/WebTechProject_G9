@@ -44,15 +44,23 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             {
                 $nameErr="Name Required";
             }
+        else if(strlen($name)<3)
+            {
+                $nameErr="Name must be at least 3 characters";
+            }
+        else if(is_numeric($name))
+            {
+                $nameErr="Name can't be numeric value";
+            }
 
         if(empty($phone))
-    {
-        $phoneErr="Phone Required";
-    }
-else if(!preg_match("/^[0-9]+$/",$phone))
-    {
-        $phoneErr="Phone must contain only numbers";
-    }
+            {
+                $phoneErr="Phone Required";
+            }
+        else if(!preg_match("/^[0-9]+$/",$phone))
+            {
+                $phoneErr="Phone must contain only numbers";
+            }
 
         if(empty($nameErr) && empty($phoneErr))
             {
