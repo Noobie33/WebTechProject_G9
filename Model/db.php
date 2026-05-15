@@ -262,7 +262,9 @@ function CancelListing($connection, $listing_id)
 function CloseExpiredAuctions($connection)
 {
     $sql = "SELECT id FROM listings WHERE status='active' AND end_datetime <= NOW()";
-    $result = $connection->query($sql);
+    $statement = $connection->prepare($sql);
+    $statement->execute();
+    $result = $statement->get_result();
     if($result && $result->num_rows > 0)
         {
             while($row = $result->fetch_assoc())
@@ -283,6 +285,16 @@ function CloseExpiredAuctions($connection)
                     $upd->execute();
                 }
         }
+}
+
+function GetSellerResults($connection, $seller_id)
+{
+    $sql = "SELECT listings.*, categories.name AS category_name, COUNT(bids.id) AS bid_count, winner_bid.amount AS winning_amount, winner_buyer.name AS winner_name, winner_buyer.email AS winner_email FROM listings LEFT JOIN categories ON listings.category_id=categories.id LEFT JOIN bids ON bids.listing_id=listings.id LEFT JOIN bids AS winner_bid ON listings.winner_bid_id=winner_bid.id LEFT JOIN users AS winner_buyer ON winner_bid.buyer_id=winner_buyer.id WHERE listings.seller_id=? GROUP BY listings.id ORDER BY listings.created_at DESC";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$seller_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
 }
 
 }

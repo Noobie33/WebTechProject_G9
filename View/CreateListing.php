@@ -18,7 +18,13 @@ include "../Controller/CreateListingController.php";
 
         <div class="box">
             <h1>Create New Listing</h1>
-            <?php if($message!=""){ echo "<span class='error'>".$message."</span><br><br>"; } ?>
+            <?php 
+            if($message!="")
+            { 
+                echo "<span class='error'>".$message."</span><br><br>";
+            } 
+            
+            ?>
 
             <form method="post" action="CreateListing.php" enctype="multipart/form-data">
                 <table>
