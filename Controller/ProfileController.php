@@ -64,6 +64,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if(empty($nameErr) && empty($phoneErr))
             {
+                $checkPhone = $database->CheckPhoneForUpdate($connection,"users",$phone,$_SESSION["user_id"]);
+
+            if($checkPhone->num_rows>0)
+                {
+                    $phoneErr="Phone Already Taken";
+                }
+                else{
                 $result = $database->UpdateProfile($connection,"users",$_SESSION["user_id"],$name,$phone,$bio);
 
                 if($result)
@@ -74,6 +81,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                     else{
                         $message="Profile Update Failed";
                     }
+                }
             }
     }
 ?>

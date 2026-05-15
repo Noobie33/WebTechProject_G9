@@ -25,6 +25,16 @@ function CheckPhone($connection, $tablename, $phone)
     return $result;
 }
 
+function CheckPhoneForUpdate($connection, $tablename, $phone, $id)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE phone=? AND id!=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("si",$phone, $id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
 function CheckEmail($connection, $tablename, $email)
 {
     $sql = "SELECT * FROM ".$tablename." WHERE email=?";
