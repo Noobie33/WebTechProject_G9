@@ -15,6 +15,26 @@ if($connection->connect_error)
 return $connection;
 }
 
+function CheckPhone($connection, $tablename, $phone)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE phone=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("s",$phone);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function CheckPhoneForUpdate($connection, $tablename, $phone, $id)
+{
+    $sql = "SELECT * FROM ".$tablename." WHERE phone=? AND id!=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("si",$phone, $id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
 function CheckEmail($connection, $tablename, $email)
 {
     $sql = "SELECT * FROM ".$tablename." WHERE email=?";
@@ -133,8 +153,6 @@ function RejectSeller($connection, $user_id)
     $result = $statement->execute();
     return $result;
 }
-
-
 
 
 function AddCategory($connection, $name)
