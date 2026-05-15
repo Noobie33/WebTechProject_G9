@@ -1,0 +1,139 @@
+body{
+    font-family: Arial;
+    background-color:#f2f2f2;
+    margin:0px;
+    padding:0px;
+}
+
+h1{
+    color:#111;
+    font-size:26px;
+    margin-top:0px;
+    margin-bottom:18px;
+}
+
+form{
+    background-color:white;
+    width:500px;
+    padding:25px;
+    border:1px solid #cccccc;
+    border-radius:6px;
+    margin:45px auto;
+}
+
+table{
+    width:100%;
+    border-collapse: collapse;
+}
+
+td{
+    padding:8px;
+    vertical-align:top;
+}
+
+input[type=text], input[type=password], textarea{
+    width:290px;
+    padding:8px;
+    border:1px solid #aaaaaa;
+    border-radius:4px;
+}
+
+textarea{
+    height:80px;
+}
+
+input[type=submit], button{
+    padding:8px 16px;
+    background-color:#222222;
+    color:white;
+    border:0px;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+a{
+    color:blue;
+}
+
+.error{
+    color:red;
+    font-size:13px;
+    display:inline-block;   
+}
+
+.message{
+    color:green;
+}
+
+.required{
+    color:red;
+}
+
+#emailresponse{
+    font-size:13px;
+    margin-top:4px;
+}
+
+.auth-note{
+    margin-top:15px;
+    padding-top:12px;
+    border-top:1px solid #dddddd;
+}
+
+.nav{
+    background-color:#222222;
+    padding:13px 25px;
+    margin-bottom:25px;
+}
+
+.nav a{
+    color:white;
+    margin-right:25px;
+    font-weight:bold;
+}
+
+.box{
+    background-color:white;
+    width:950px;
+    padding:22px;
+    border:1px solid #cccccc;
+    border-radius:6px;
+    margin:25px auto;
+}
+
+.data-table{
+    width:100%;
+    border-collapse: collapse;
+}
+
+.data-table td{
+    border:1px solid #cccccc;
+    padding:10px;
+    vertical-align:top;
+}
+
+.data-table tr:first-child td{
+    font-weight:bold;
+    background-color:#eeeeee;
+}
+
+.approve-btn{
+    width:82px;
+    background-color:green;
+    margin-bottom:7px;
+}
+
+.reject-btn{
+    width:82px;
+    background-color:red;
+}
+
+.verified{
+    color:green;
+    font-weight:bold;
+}
+
+.unverified{
+    color:red;
+    font-weight:bold;
+}
