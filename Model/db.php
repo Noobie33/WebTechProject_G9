@@ -263,7 +263,75 @@ function ShowActiveListings($connection)
     $result = $connection->query($sql);
     return $result;
 }
+function SearchActiveListings($connection, $keyword)
+{
+    $kw = "%".$keyword."%";
+    $sql = "SELECT listings.*, categories.name AS category_name, COUNT(bids.id) AS bid_count, users.name AS seller_name FROM listings LEFT JOIN categories ON listings.category_id=categories.id LEFT JOIN bids ON bids.listing_id=listings.id LEFT JOIN users ON listings.seller_id=users.id WHERE listings.status='active' AND listings.end_datetime > NOW() AND listings.title LIKE ? GROUP BY listings.id ORDER BY listings.created_at DESC";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("s",$kw);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
 
+function FilterListingsByCategory($connection, $category_id)
+{
+    $sql = "SELECT listings.*, categories.name AS category_name, COUNT(bids.id) AS bid_count, users.name AS seller_name FROM listings LEFT JOIN categories ON listings.category_id=categories.id LEFT JOIN bids ON bids.listing_id=listings.id LEFT JOIN users ON listings.seller_id=users.id WHERE listings.status='active' AND listings.end_datetime > NOW() AND listings.category_id=? GROUP BY listings.id ORDER BY listings.created_at DESC";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$category_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function GetAuctionDetails($connection, $listing_id)
+{
+    $sql = "SELECT listings.*, categories.name AS category_name, users.name AS seller_name, users.email AS seller_email FROM listings LEFT JOIN categories ON listings.category_id=categories.id LEFT JOIN users ON listings.seller_id=users.id WHERE listings.id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$listing_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function GetLastTenBids($connection, $listing_id)
+{
+    $sql = "SELECT bids.*, users.name AS bidder_name FROM bids LEFT JOIN users ON bids.buyer_id=users.id WHERE bids.listing_id=? ORDER BY bids.created_at DESC LIMIT 10";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$listing_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result;
+}
+
+function PlaceBid($connection, $listing_id, $buyer_id, $amount)
+{
+    $sql = "INSERT INTO bids(listing_id, buyer_id, amount) VALUES (?,?,?)";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("iid",$listing_id,$buyer_id,$amount);
+    $result = $statement->execute();
+    return $result;
+}
+
+function UpdateCurrentBid($connection, $listing_id, $amount)
+{
+    $sql = "UPDATE listings SET current_bid=? WHERE id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("di",$amount,$listing_id);
+    $result = $statement->execute();
+    return $result;
+}
+
+function GetBidCount($connection, $listing_id)
+{
+    $sql = "SELECT COUNT(*) AS cnt FROM bids WHERE listing_id=?";
+    $statement=$connection->prepare($sql);
+    $statement->bind_param("i",$listing_id);
+    $statement->execute();
+    $result = $statement->get_result();
+    $row = $result->fetch_assoc();
+    return $row['cnt'];
+}
 
 // Task 4 functions will be added here later.
 
