@@ -257,6 +257,14 @@ function CancelListing($connection, $listing_id)
 
 
 // Task 3 functions will be added here later.
+function ShowActiveListings($connection)
+{
+    $sql = "SELECT listings.*, categories.name AS category_name, COUNT(bids.id) AS bid_count, users.name AS seller_name FROM listings LEFT JOIN categories ON listings.category_id=categories.id LEFT JOIN bids ON bids.listing_id=listings.id LEFT JOIN users ON listings.seller_id=users.id WHERE listings.status='active' AND listings.end_datetime > NOW() GROUP BY listings.id ORDER BY listings.created_at DESC";
+    $result = $connection->query($sql);
+    return $result;
+}
+
+
 // Task 4 functions will be added here later.
 
 function CloseExpiredAuctions($connection)
